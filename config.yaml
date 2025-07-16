@@ -1,0 +1,18 @@
+git:
+  base_url: "https://gitdev.devops.krungthai.com"
+  branch: "develop"
+
+repositories:
+  -  "./cicd/kustomize/ktb-bib/bnb-ktb-orch-tax-certificate"
+  -  "./cicd/kustomize/ktb-bib/bnb-ktb-orch-transaction-2"
+
+env: sit
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 32Mi
+  requests:
+    cpu: 10m
+    memory: 16Mi
+

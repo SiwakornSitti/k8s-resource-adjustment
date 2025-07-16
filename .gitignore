@@ -1,0 +1,13 @@
+*.log
+*.tmp
+*.temp
+/k8s-manifests/
+.env
+.env.local
+.DS_Store
+/.vscode/
+/bin/
+/dist/
+/build/
+go.sum
+/tmp
