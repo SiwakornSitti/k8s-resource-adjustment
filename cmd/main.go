@@ -13,9 +13,9 @@ import (
 
 func main() {
 	var (
-		configLoader config.ConfigLoader    = &config.EnvConfigLoader{}
-		gitManager   gitops.GitRepoManager  = &gitops.InMemoryGitRepoManager{}
-		patcher      k8s.K8sResourcePatcher = &k8s.DefaultK8sResourcePatcher{}
+		configLoader config.ConfigLoader   = &config.EnvConfigLoader{}
+		gitManager   gitops.GitRepoManager = &gitops.InMemoryGitRepoManager{}
+		patcher      k8s.ResourcePatcher   = &k8s.DefaultResourcePatcher{}
 	)
 
 	cfg := configLoader.Load()

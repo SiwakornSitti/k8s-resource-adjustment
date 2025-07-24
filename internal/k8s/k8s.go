@@ -10,13 +10,13 @@ import (
 	"sigs.k8s.io/yaml"
 )
 
-// K8sResourcePatcher defines the interface for patching resource requirements in K8s manifests
-type K8sResourcePatcher interface {
+// ResourcePatcher defines the interface for patching resource requirements in K8s manifests
+type ResourcePatcher interface {
 	Patch([]byte, ResourceConfig) ([]byte, error)
 }
 
-// DefaultK8sResourcePatcher implements K8sResourcePatcher for common K8s kinds
-type DefaultK8sResourcePatcher struct{}
+// DefaultResourcePatcher implements K8sResourcePatcher for common K8s kinds
+type DefaultResourcePatcher struct{}
 
 // ResourceConfig holds parsed resource quantities for CPU and memory.
 type ResourceConfig struct {
@@ -26,7 +26,7 @@ type ResourceConfig struct {
 	MemLimit   resource.Quantity
 }
 
-func unmarshalK8sResource[T any](data []byte) (*T, error) {
+func unmarshalResource[T any](data []byte) (*T, error) {
 	var obj T
 	if err := yaml.Unmarshal(data, &obj); err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ type containerExtractor func(file []byte) (any, []corev1.Container, error)
 // newExtractor creates a containerExtractor for a specific Kubernetes resource type using generics.
 func newExtractor[T any](getContainers func(obj *T) []corev1.Container) containerExtractor {
 	return func(file []byte) (any, []corev1.Container, error) {
-		obj, err := unmarshalK8sResource[T](file)
+		obj, err := unmarshalResource[T](file)
 		if err != nil {
 			return nil, nil, err
 		}
@@ -78,7 +78,7 @@ var extractorMap = map[string]containerExtractor{
 	}),
 }
 
-func (p *DefaultK8sResourcePatcher) Patch(file []byte, resCfg ResourceConfig) ([]byte, error) {
+func (p *DefaultResourcePatcher) Patch(file []byte, resCfg ResourceConfig) ([]byte, error) {
 	kind, err := getKind(file)
 	if err != nil {
 		return nil, err
