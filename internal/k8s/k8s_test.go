@@ -13,7 +13,7 @@ import (
 	"sigs.k8s.io/yaml"
 )
 
-func TestDefaultK8sResourcePatcher_Patch(t *testing.T) {
+func TestDefaultResourcePatcher_Patch(t *testing.T) {
 	resCfg := k8s.ResourceConfig{
 		CPURequest: resource.MustParse("100m"),
 		MemRequest: resource.MustParse("128Mi"),

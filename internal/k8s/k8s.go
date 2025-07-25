@@ -10,12 +10,12 @@ import (
 	"sigs.k8s.io/yaml"
 )
 
-// ResourcePatcher defines the interface for patching resource requirements in K8s manifests
+// ResourcePatcher defines the interface for patching resource requirements in K8S manifests
 type ResourcePatcher interface {
 	Patch([]byte, ResourceConfig) ([]byte, error)
 }
 
-// DefaultResourcePatcher implements K8sResourcePatcher for common K8s kinds
+// DefaultResourcePatcher implements ResourcePatcher for common K8S kinds
 type DefaultResourcePatcher struct{}
 
 // ResourceConfig holds parsed resource quantities for CPU and memory.

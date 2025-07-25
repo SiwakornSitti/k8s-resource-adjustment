@@ -1,4 +1,4 @@
-# K8s Resource Adjuster
+# K8S Resource Adjustment
 
 A Go-based automation tool that programmatically updates Kubernetes resource settings (CPU/memory requests and limits) in YAML files within one or more Git repositories. It clones the repositories, modifies the files in-memory, and pushes the changes back to the remote.
 
