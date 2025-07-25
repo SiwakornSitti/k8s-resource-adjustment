@@ -5,8 +5,10 @@ go 1.24.5
 require (
 	github.com/go-git/go-billy/v6 v6.0.0-20250711053805-c1f149aaab07
 	github.com/go-git/go-git/v6 v6.0.0-20250722095407-db22bf1ac608
+	github.com/jdxcode/netrc v1.0.0
 	github.com/joho/godotenv v1.5.1
 	github.com/stretchr/testify v1.10.0
+	gitlab.com/gitlab-org/api/client-go v0.137.0
 	k8s.io/api v0.33.3
 	k8s.io/apimachinery v0.33.3
 	sigs.k8s.io/yaml v1.5.0
@@ -25,6 +27,9 @@ require (
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
+	github.com/hashicorp/go-retryablehttp v0.7.8 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kevinburke/ssh_config v1.2.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -37,8 +42,10 @@ require (
 	golang.org/x/crypto v0.40.0 // indirect
 	golang.org/x/exp v0.0.0-20250531010427-b6e5de432a8b // indirect
 	golang.org/x/net v0.42.0 // indirect
+	golang.org/x/oauth2 v0.30.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 	golang.org/x/text v0.27.0 // indirect
+	golang.org/x/time v0.12.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	k8s.io/klog/v2 v2.130.1 // indirect

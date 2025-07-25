@@ -35,13 +35,43 @@ Before running the application, you need to set up your configuration.
 | `MEM_REQUEST` | The memory request to set for the container.                                                               | `128Mi`                               |
 | `CPU_LIMIT`   | The CPU limit to set for the container.                                                                    | `200m`                                |
 | `MEM_LIMIT`   | The memory limit to set for the container.                                                                 | `256Mi`                               |
+| `GITLAB_BASE_URL`| The base URL of your GitLab instance (defaults to `https://gitlab.com`).                                   | `https://gitlab.yourcompany.com`      |
+| `GITLAB_TOKEN`| Your personal GitLab access token (required for the repository fetching script).                           | `your_gitlab_token`                   |
+| `GITLAB_GROUP_ID`| The ID of your GitLab group (required for the repository fetching script).                                | `12345`                               |
+
+## Automating Repository Updates
+
+The project includes a script to automatically fetch all repositories from a GitLab group and update the `REPO_URLS` in your `.env` file.
+
+### Script Configuration
+
+To use the script, you need to provide your GitLab token and group ID. You can do this in two ways:
+
+1.  **Environment Variables**: Set the `GITLAB_TOKEN` and `GITLAB_GROUP_ID` environment variables. You can also set `GITLAB_BASE_URL` if you are using a self-hosted GitLab instance.
+2.  **`.netrc` File**: Add your GitLab credentials to a `.netrc` file in your home directory. The script will look for a machine that matches the hostname of your `GITLAB_BASE_URL`.
+
+    ```
+    machine gitlab.com
+      login your_gitlab_username
+      password your_gitlab_personal_access_token
+    ```
+
+### Running the Script
+
+To run the script, execute the following command:
+
+```sh
+make get-repos
+```
+
+This will update the `REPO_URLS` in your `.env` file with the latest list of repositories from your GitLab project.
 
 ## Usage
 
-To run the application, execute the following command from the root of the project:
+To run the main application, which processes the repositories listed in your `.env` file, execute the following command:
 
 ```sh
-go run cmd/main.go
+make run
 ```
 
 The application will then:
@@ -51,6 +81,16 @@ The application will then:
 4.  Read the `set_resources.yaml` file from the configured overlay path.
 5.  Update the resource values.
 6.  Commit and push the changes back to the remote repository.
+
+## Development
+
+A `Makefile` is included to streamline common development tasks.
+
+- `make build`: Build the application binary.
+- `make test`: Run all tests.
+- `make deps`: Tidy and install dependencies.
+- `make clean`: Clean up build artifacts.
+- `make help`: Display a list of all available targets.
 
 ## How It Works
 
